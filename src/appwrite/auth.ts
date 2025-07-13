@@ -1,7 +1,7 @@
 import config from "../config/config";
 import { ID, Client, Account } from "appwrite";
 
-type accountCredentials = {
+export type accountCredentials = {
   email: string;
   password: string;
   name?: string;

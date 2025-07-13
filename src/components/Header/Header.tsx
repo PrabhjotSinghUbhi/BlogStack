@@ -1,13 +1,14 @@
-import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { logOut } from "../../features/authSlice";
-import Logo from "../logo";
+import Logo from "../Logo/Logo";
 import Container from "../Container/Container";
 import { useSelector } from "react-redux";
-import LogOutButton from "../LogOutButton";
+import LogOutButton from "../LogOutButton/LogOutButton";
+import type { RootState } from "../../store/store";
 
 function Header() {
-  const authStatus = useSelector((state) => state.auth.status);
+  const authStatus = useSelector((state: RootState) => state.auth.status);
+  console.log(authStatus);
+
   const navigate = useNavigate();
 
   const navItems = [
