@@ -21,11 +21,10 @@ const router = createBrowserRouter(
 );
 
 createRoot(document.getElementById("root")!).render(
-  <Provider store={store}>
-    <RouterProvider router={router}>
-      <StrictMode>
-        <App />
-      </StrictMode>
-    </RouterProvider>
-  </Provider>
+  <StrictMode>
+    <Provider store={store}>
+      <RouterProvider router={router}>
+      </RouterProvider>
+    </Provider>
+  </StrictMode>
 );

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import service from "../../appwrite/conf";
+import service from "../../appwrite/conf/conf";
 
 type PostCardProps = {
   $id: string;

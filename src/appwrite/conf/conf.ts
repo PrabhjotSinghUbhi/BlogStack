@@ -1,16 +1,16 @@
-import config from "../config/config";
+import config from "../../config/config";
 import { Databases, Storage, Client, Query, ID } from "appwrite";
 
-type ContentFlow = {
+interface ContentStructure {
   title: string;
   content: string;
   featuredImg: string;
   status: string;
   slug: string;
-  userId?: string;
-};
+  userId: string;
+}
 
-export class Service {
+export class AppwriteService {
   client = new Client();
   databases;
   bucket;
@@ -31,7 +31,7 @@ export class Service {
     featuredImg,
     status,
     userId,
-  }: ContentFlow) {
+  }: ContentStructure) {
     try {
       return await this.databases.createDocument(
         config.appwriteDatabaseId,
@@ -52,7 +52,7 @@ export class Service {
 
   async updatePost(
     slug: string,
-    { title, content, featuredImg, status }: ContentFlow
+    { title, content, featuredImg, status, userId }: ContentStructure
   ) {
     try {
       return await this.databases.createDocument(
@@ -64,6 +64,7 @@ export class Service {
           content,
           featuredImg,
           status,
+          userId,
         }
       );
     } catch (error) {
@@ -100,7 +101,7 @@ export class Service {
       return await this.databases.listDocuments(
         config.appwriteDatabaseId,
         config.appwriteCollectionId,
-        [Query.equal("status", "equal")]
+        [Query.equal("status", "active")]
       );
     } catch (err) {
       console.log(`Error :: GetActivePost :: `, err);
@@ -132,5 +133,5 @@ export class Service {
   }
 }
 
-const service = new Service();
-export default service;
+const AppWriteBackendApi = new AppwriteService();
+export default AppWriteBackendApi;

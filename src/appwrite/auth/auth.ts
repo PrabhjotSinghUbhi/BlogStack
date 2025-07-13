@@ -1,11 +1,10 @@
-import config from "../config/config";
+import config from "../../config/config";
 import { ID, Client, Account } from "appwrite";
 
-export type accountCredentials = {
+export interface AccountCredentials {
   email: string;
   password: string;
-  name?: string;
-};
+}
 
 export class AuthService {
   client = new Client();
@@ -18,13 +17,12 @@ export class AuthService {
     this.account = new Account(this.client);
   }
 
-  async createAccount({ email, password, name }: accountCredentials) {
+  async authCreateAccount({ email, password }: AccountCredentials) {
     try {
       const userAccount = await this.account.create(
         ID.unique(),
         email,
-        password,
-        name
+        password
       );
 
       if (userAccount) {
@@ -36,7 +34,7 @@ export class AuthService {
     }
   }
 
-  async login({ email, password }: accountCredentials) {
+  async authLogin({ email, password }: AccountCredentials) {
     try {
       return await this.account.createEmailPasswordSession(email, password);
     } catch (err) {
@@ -44,7 +42,7 @@ export class AuthService {
     }
   }
 
-  async getCurrentUser() {
+  async authGetCurrentUser() {
     try {
       return await this.account.get();
     } catch (error) {
@@ -52,7 +50,7 @@ export class AuthService {
     }
   }
 
-  async logOut() {
+  async authLogOut() {
     try {
       return await this.account.deleteSessions();
     } catch (error) {
@@ -62,5 +60,4 @@ export class AuthService {
 }
 
 const authService = new AuthService();
-
 export default authService;

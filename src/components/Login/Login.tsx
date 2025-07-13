@@ -2,11 +2,11 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { login as authLogin } from "../../features/authSlice";
 import { useDispatch } from "react-redux";
-import authService from "../../appwrite/auth";
+import authService from "../../appwrite/auth/auth";
 import { useForm } from "react-hook-form";
 import Logo from "../Logo/Logo";
 import Input from "../Input/Input";
-import { type accountCredentials } from "../../appwrite/auth";
+import { type accountCredentials } from "../../appwrite/auth/auth";
 import Button from "../Button/Button";
 
 function Login() {

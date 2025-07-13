@@ -1,12 +1,12 @@
-type conf = {
-  appwriteUrl: string;
-  appwriteProjectId: string;
-  appwriteDatabaseId: string;
-  appwriteCollectionId: string;
-  appwriteBucketId: string;
-};
+interface Conf {
+  readonly appwriteUrl: string;
+  readonly appwriteProjectId: string;
+  readonly appwriteDatabaseId: string;
+  readonly appwriteCollectionId: string;
+  readonly appwriteBucketId: string;
+}
 
-const config: conf = {
+const config: Conf = {
   appwriteUrl: import.meta.env.VITE_APPWRITE_URL,
   appwriteProjectId: import.meta.env.VITE_APPWRITE_PROJECT_ID,
   appwriteDatabaseId: import.meta.env.VITE_APPWRITE_DATABASE_ID,

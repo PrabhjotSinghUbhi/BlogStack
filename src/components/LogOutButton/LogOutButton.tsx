@@ -1,5 +1,5 @@
 import { logOut } from "../../features/authSlice";
-import authService from "../../appwrite/auth";
+import authService from "../../appwrite/auth/auth";
 import { useDispatch } from "react-redux";
 
 function LogOutButton() {
