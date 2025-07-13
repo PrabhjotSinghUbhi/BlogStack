@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import authService from "./appwrite/auth";
 import { login, logOut } from "./features/authSlice";
 import { Outlet } from "react-router-dom";
-import { Footer, Header } from "./components";
+// import { Footer, Header } from "./components";
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -28,12 +28,12 @@ function App() {
   return !loading ? (
     <div className="min-h-screen flex flex-wrap content-between bg-[#333]">
       <div className="w-full block">
-        <Header />
+        {/* <Header /> */}
         <main>
-        <Outlet />
+       TODO <Outlet />
         <span className="text-5xl text-white">TODO.</span>
         </main>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </div>
   ) : (
