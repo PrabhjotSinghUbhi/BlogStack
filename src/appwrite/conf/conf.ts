@@ -1,7 +1,7 @@
 import config from "../../config/config";
 import { Databases, Storage, Client, Query, ID } from "appwrite";
 
-interface ContentStructure {
+export interface ContentStructure {
   title: string;
   content: string;
   featuredImg: string;

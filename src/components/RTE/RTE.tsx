@@ -2,19 +2,18 @@ import { Editor } from '@tinymce/tinymce-react'
 import { type JSX } from 'react'
 import { Controller, type Control, type FieldValues } from 'react-hook-form'
 
-interface RTEProps {
+interface RteProps<T extends FieldValues = FieldValues> {
     name: string;
-    control: Control<FieldValues> | undefined;
+    control: Control<T>;
     label?: string;
     defaultValue?: string;
 }
-
-export default function RTE({
+export default function Rte({
     name,
     control,
     label,
     defaultValue
-}: Readonly<RTEProps>): JSX.Element {
+}: Readonly<RteProps>): JSX.Element {
     return (
         <div className='w-full'>
             {label && <label className='inline-block mb-1 pl-1'>{label}</label>}

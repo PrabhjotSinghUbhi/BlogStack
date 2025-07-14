@@ -20,6 +20,7 @@
     "react-hook-form": "^7.60.0",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.6.3",
+    "react-select": "^5.10.2",
     "tailwindcss": "^4.1.11"
   },
   "devDependencies": {
@@ -33,7 +34,7 @@
     "globals": "^16.3.0",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.35.1",
-    "vite": "^5.4.19",
+    "vite": "^7.0.4",
     "vite-plugin-eslint": "^1.8.1"
   }
 }
