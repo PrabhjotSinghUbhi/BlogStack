@@ -15,6 +15,9 @@ const authSlice = createSlice({
   initialState: initialState,
   reducers: {
     login: (state, action) => {
+      console.log("Hey Prabhjot this is the action.payload.", action.payload);
+      console.log("Hey Prabhjot this is the current state.", state);
+
       state.status = true;
       state.userData = action.payload;
     },

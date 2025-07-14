@@ -10,7 +10,7 @@ interface ProtectedProps {
 
 export default function Protected({
     children,
-    authentication = true
+    authentication = false
 }: Readonly<ProtectedProps>): JSX.Element {
 
     const isAuthenticated = useSelector((state: RootState) => state.auth.status)

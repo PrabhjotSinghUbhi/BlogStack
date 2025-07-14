@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { login as authLogin } from "../../features/authSlice";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import authService from "../../appwrite/auth/auth";
 import { useForm } from "react-hook-form";
 import Logo from "../Logo/Logo";
 import Input from "../Input/Input";
-import { AccountCredentials } from '../../appwrite/auth/auth'
+import type { AccountCredentials } from '../../appwrite/auth/auth'
 import Button from "../Button/Button";
+import { useDispatch } from "react-redux";
 
 function Login() {
   const navigate = useNavigate();
@@ -15,45 +16,26 @@ function Login() {
   const { register, handleSubmit } = useForm<AccountCredentials>();
   const [error, setError] = useState("");
 
-  // const login = async (data: AccountCredentials) => {
-  //   setError("");
-  //   try {
-  //     const session = await authService.login(data);
-  //     if (session) {
-  //       const userData = await authService.getCurrentUser();
-  //       if (userData) {
-  //         dispatch(authLogin(userData));
-  //         navigate("/");
-  //       }
-  //     }
-  //   } catch (error) {
-  //     if (error instanceof Error) {
-  //       setError(error.message);
-  //     } else {
-  //       console.log(`some unknown error occurred.`);
-  //     }
-  //   }
-  // };
-
-  const userLogin = (data: AccountCredentials) => {
-    setError("")
-    authService.authLogin(data)
-      .then(response => {
-        if (response) {
-          authService.authGetCurrentUser()
-          navigate("/")
+  const userLogin = async (data: AccountCredentials) => {
+    setError("");
+    try {
+      const session = await authService.authLogin(data);
+      if (session) {
+        const userData = await authService.authGetCurrentUser();
+        if (userData) {
+          dispatch(authLogin(userData));
+          navigate("/");
         }
-      })
-      .catch((error) => {
-        if (error instanceof Error) {
-          setError(error.message)
-          console.log("UserLogin Error", error.message)
-        } else {
-          console.log("Some Unexpected Error Occurred.");
-          setError("Some Unexpected Error Occurred.")
-        }
-      })
-  }
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        console.log(`some unknown error occurred.`);
+      }
+    }
+  };
+  console.log("Prabh +> Login component rendered");
 
   return (
     <div className="flex items-center justify-center w-full">

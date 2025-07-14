@@ -6,21 +6,24 @@ import { Outlet } from "react-router-dom";
 import { Footer, Header } from "./components";
 
 function App() {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
+    // Fetch the current user from Appwrite
     authService
-      .getCurrentUser()
+      .authGetCurrentUser()
       .then((userData) => {
         if (userData) {
+          console.log("Hey Prabhjot this is the userDate from authCurrentUser", userData);
           dispatch(login(userData.$id));
         } else {
           dispatch(logOut());
         }
       })
       .catch((err) => {
+        console.error("hey Prabhjot Singh -> Error fetching current user:", err);
         throw err;
       })
       .finally(() => setLoading(false));
@@ -31,8 +34,8 @@ function App() {
       <div className="w-full block">
         <Header />
         <main>
-          TODO <Outlet />
-          <span className="text-5xl text-white">TODO.</span>
+          <Outlet />
+          {/* <span className="text-5xl text-white">TODO.</span> */}
         </main>
         <Footer />
       </div>

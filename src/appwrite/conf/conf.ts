@@ -8,6 +8,7 @@ export interface ContentStructure {
   status: string;
   slug: string;
   userId: string;
+  image?: File[]; // Optional, used for file upload
 }
 
 export class AppwriteService {
@@ -17,7 +18,7 @@ export class AppwriteService {
 
   constructor() {
     this.client
-      .setEndpoint(config.appwriteProjectId)
+      .setEndpoint(config.appwriteUrl)
       .setProject(config.appwriteProjectId);
 
     this.databases = new Databases(this.client);
@@ -96,12 +97,12 @@ export class AppwriteService {
     }
   }
 
-  async getActivePosts() {
+  async getActivePosts(queries = [Query.equal("status", "active")]) {
     try {
       return await this.databases.listDocuments(
         config.appwriteDatabaseId,
         config.appwriteCollectionId,
-        [Query.equal("status", "active")]
+        queries
       );
     } catch (err) {
       console.log(`Error :: GetActivePost :: `, err);
