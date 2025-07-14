@@ -1,10 +1,10 @@
-import React from "react";
+import { type ReactNode } from "react";
 
 interface ContainerProps {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
-function Container({ children }: ContainerProps) {
+function Container({ children }: Readonly<ContainerProps>) {
   return <div className="w-full max-w-7xl mx-auto px-4">{children}</div>;
 }
 

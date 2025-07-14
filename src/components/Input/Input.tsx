@@ -25,7 +25,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
         ref={ref}
         type={type}
         className={` px-3 py-3 rounded-lg bg-white text-black outline:none focus:bg-gray-50
-             border border-gray-200 w-full duration-200  ${className}`}
+            border border-gray-200 w-full duration-200  ${className}`}
         {...props}
       />
     </div>
